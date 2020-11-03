@@ -1,5 +1,4 @@
-/* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Image,
   Text,
@@ -7,6 +6,7 @@ import {
   StyleSheet,
   FlatList,
   SafeAreaView,
+  ActivityIndicator,
 } from 'react-native';
 
 import {
@@ -17,7 +17,8 @@ import {
 
 import api from '../services/api';
 
-import {RectButton} from 'react-native-gesture-handler';
+import { RectButton, TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
+import { color } from 'react-native-reanimated';
 
 interface CategoryProps {
   category: string;
@@ -36,22 +37,14 @@ export default function CocktailAndDrinks() {
 
   const params = route.params as CategoryProps;
 
-  useFocusEffect(() => {
+  useEffect(() => {
     api.get(`filter.php?c=${params.category}`).then((response) => {
       setDrinks(response.data.drinks);
     });
   });
 
-  function detalisDrinks(id: string) {
-    navigation.navigate('Details', {id});
-  }
-
-  if (!drinks) {
-    return (
-      <View>
-        <Text>Carregando...</Text>
-      </View>
-    );
+  function detailsDrinks(id: string) {
+    navigation.navigate('Details', { id });
   }
 
   return (
@@ -59,13 +52,18 @@ export default function CocktailAndDrinks() {
       <FlatList
         data={drinks}
         keyExtractor={(drink) => String(drink.idDrink)}
-        renderItem={({item}) => (
-          <RectButton onPress={() => detalisDrinks(item.idDrink)}>
+        renderItem={({ item }) => (
+          <RectButton onPress={() => detailsDrinks(item.idDrink)}>
             <View style={styles.teste}>
-              <Image style={styles.Image} source={{uri: item.strDrinkThumb}} />
+              <Image style={styles.Image} source={{ uri: item.strDrinkThumb }} />
               <Text style={styles.Title}>{item.strDrink}</Text>
             </View>
           </RectButton>
+        )}
+        ListFooterComponent={({ item }) => (
+          <View>
+            <ActivityIndicator size='small' color="#8d8d8d" />
+          </View>
         )}
       />
     </SafeAreaView>
@@ -73,17 +71,16 @@ export default function CocktailAndDrinks() {
 }
 
 const styles = StyleSheet.create({
-  Container: {
+  container: {
     flex: 1,
-    marginRight: 20,
-    marginTop: 30,
-    marginLeft: 20,
-    marginBottom: 5,
+    margin: 10,
   },
 
   teste: {
     borderTopWidth: 0.4,
     borderBottomWidth: 0.4,
+    borderColor: '#d3e2e6',
+
     flexDirection: 'row',
     padding: 10,
     alignItems: 'center',

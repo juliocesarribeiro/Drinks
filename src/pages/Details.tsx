@@ -1,7 +1,6 @@
-/* eslint-disable react-native/no-inline-styles */
-import {useRoute} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, Image, StyleSheet, Text, View} from 'react-native';
+import { useRoute } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 
 import api from '../services/api';
 
@@ -17,6 +16,18 @@ interface DetailsProps {
   strIngredient1: string;
   strIngredient2: string;
   strIngredient3: string;
+  strIngredient4: string;
+  strIngredient5: string;
+  strIngredient6: string;
+  strIngredient7: string;
+  strIngredient8: string;
+  strIngredient9: string;
+  strIngredient10: string;
+  strIngredient11: string;
+  strIngredient12: string;
+  strIngredient13: string;
+  strIngredient14: string;
+
 }
 
 export default function Details() {
@@ -41,7 +52,7 @@ export default function Details() {
           alignItems: 'center',
         }}>
         <ActivityIndicator size="large" color="blue" />
-        <Text style={{fontSize: 24}}>Carregando......</Text>
+        <Text style={{ fontSize: 24 }}>Carregando......</Text>
       </View>
     );
   }
@@ -50,21 +61,27 @@ export default function Details() {
     <View style={styles.Container}>
       {drink.map((item) => {
         return (
-          <>
-            <View key={item.idDrink} style={styles.ContainerDrink}>
+          <View key={item.idDrink} style={styles.Container}>
+            <View style={styles.ContainerDrink}>
               <Image
                 style={styles.DrinkImage}
-                source={{uri: item.strDrinkThumb}}
+                source={{ uri: item.strDrinkThumb }}
               />
               <Text style={styles.Title}>Name:</Text>
               <Text>{item.strDrink}</Text>
             </View>
 
             <View>
+              <Text style={styles.Title}>Ingredient:</Text>
+
+              {drink.}
+
+
+
               <Text style={styles.Title}>Instructions:</Text>
               <Text>{item.strInstructions}</Text>
             </View>
-          </>
+          </View>
         );
       })}
     </View>
@@ -83,9 +100,9 @@ const styles = StyleSheet.create({
   },
 
   DrinkImage: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
+    width: 100,
+    height: 100,
+    borderRadius: 50,
   },
 
   Title: {
