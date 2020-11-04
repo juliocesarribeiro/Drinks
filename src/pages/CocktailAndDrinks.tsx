@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Image,
   Text,
   View,
   StyleSheet,
@@ -9,16 +8,17 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
+import { Image } from 'react-native-elements';
+
 import {
   useNavigation,
-  useFocusEffect,
   useRoute,
 } from '@react-navigation/native';
 
 import api from '../services/api';
 
-import { RectButton, TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
-import { color } from 'react-native-reanimated';
+import { RectButton } from 'react-native-gesture-handler';
+
 
 interface CategoryProps {
   category: string;
@@ -38,10 +38,13 @@ export default function CocktailAndDrinks() {
   const params = route.params as CategoryProps;
 
   useEffect(() => {
-    api.get(`filter.php?c=${params.category}`).then((response) => {
+    (async () => {
+      const response = await api.get(`filter.php?c=${params.category}`);
+
       setDrinks(response.data.drinks);
-    });
-  });
+
+    })();
+  }, []);
 
   function detailsDrinks(id: string) {
     navigation.navigate('Details', { id });
@@ -53,17 +56,16 @@ export default function CocktailAndDrinks() {
         data={drinks}
         keyExtractor={(drink) => String(drink.idDrink)}
         renderItem={({ item }) => (
-          <RectButton onPress={() => detailsDrinks(item.idDrink)}>
+          <RectButton key={item.idDrink} onPress={() => detailsDrinks(item.idDrink)}>
             <View style={styles.teste}>
-              <Image style={styles.Image} source={{ uri: item.strDrinkThumb }} />
+              <Image
+                style={styles.Image}
+                source={{ uri: item.strDrinkThumb }}
+                PlaceholderContent={<ActivityIndicator size="small" color="#000" />}
+              />
               <Text style={styles.Title}>{item.strDrink}</Text>
             </View>
           </RectButton>
-        )}
-        ListFooterComponent={({ item }) => (
-          <View>
-            <ActivityIndicator size='small' color="#8d8d8d" />
-          </View>
         )}
       />
     </SafeAreaView>
