@@ -19,13 +19,13 @@ export default function Header({ title, showCancel = true }: HeaderProps) {
   return (
     <View style={styles.container}>
       <BorderlessButton onPress={navigation.goBack}>
-        <Icon name="arrow-left" size={24} color="#15b6d6" />
+        <Icon name="arrow-left" size={24} color="#FE9925" />
       </BorderlessButton>
       <Text style={styles.title}>{title}</Text>
 
       {showCancel ? (
         <BorderlessButton onPress={handleGoBackToAppCategories}>
-          <Icon name='x' size={24} color='#ff669d' />
+          <Icon name='x' size={24} color='#B31A0F' />
         </BorderlessButton>
       ) : (<View />
         )}
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    color: '#8fa7b3',
+    color: '#000',
     fontSize: 18,
   }
 })

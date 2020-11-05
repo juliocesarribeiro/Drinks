@@ -1,20 +1,17 @@
 import { useRoute } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View, Image, SafeAreaView } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Image } from 'react-native-elements';
 
 import api from '../services/api';
-import { createIconSetFromFontello } from 'react-native-vector-icons';
-
 interface DetailsRouteParams {
   id: string;
 }
 interface DetailsProps {
   idDrink: string;
   strDrink: string;
-  strInstructions: string;
   strDrinkThumb: string;
+
   strIngredient1: string;
   strIngredient2: string;
   strIngredient3: string;
@@ -30,6 +27,7 @@ interface DetailsProps {
   strIngredient13: string;
   strIngredient14: string;
   strIngredient15: string;
+
   strMeasure1: string;
   strMeasure2: string;
   strMeasure3: string;
@@ -45,6 +43,8 @@ interface DetailsProps {
   strMeasure13: string;
   strMeasure14: string;
   strMeasure15: string;
+
+  strInstructions: string;
 }
 
 export default function Details() {
@@ -62,7 +62,7 @@ export default function Details() {
   }, [params.id]);
 
 
-  function fodase() {
+  const fodase = () => {
     var position = 1;
     var key = 'strIngredient';
     while (position <= 15) {
@@ -93,16 +93,14 @@ export default function Details() {
   fodase();
 
   return (
-    <View style={styles.Container}>
-
+    <SafeAreaView style={styles.container}>
       {drink.map((item) => {
         return (
-          <View key={item.idDrink} style={styles.Container}>
+          <View key={item.idDrink}>
             <View style={styles.ContainerDrink}>
               <Image
                 style={styles.DrinkImage}
                 source={{ uri: item.strDrinkThumb }}
-                PlaceholderContent={<ActivityIndicator />}
               />
               <Text style={styles.Title}>Name:</Text>
               <Text>{item.strDrink}</Text>
@@ -110,8 +108,8 @@ export default function Details() {
 
             <ScrollView>
               <Text style={styles.Title}>Ingredient:</Text>
-              <Text>{}</Text>
-              {/* <Text>{item.strIngredient2}</Text>
+              <Text>{item.strIngredient1}</Text>
+              <Text>{item.strIngredient2}</Text>
               <Text>{item.strIngredient3}</Text>
               <Text>{item.strIngredient4}</Text>
               <Text>{item.strIngredient5}</Text>
@@ -124,7 +122,7 @@ export default function Details() {
               <Text>{item.strIngredient12}</Text>
               <Text>{item.strIngredient13}</Text>
               <Text>{item.strIngredient14}</Text>
-              <Text>{item.strIngredient15}</Text> */}
+              <Text>{item.strIngredient15}</Text>
 
               <Text style={styles.Title}>strMeasure:</Text>
               <Text>{item.strMeasure1}</Text>
@@ -149,14 +147,18 @@ export default function Details() {
           </View>
         );
       })}
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  Container: {
+  container: {
     flex: 1,
-    margin: 10,
+    backgroundColor: '#F8F7F5',
+    marginLeft: 10,
+    marginRight: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   ContainerDrink: {
@@ -173,7 +175,6 @@ const styles = StyleSheet.create({
 
   Title: {
     margin: 5,
-
     fontSize: 18,
     fontWeight: 'bold',
   },

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions, SafeAreaView } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 
-import backGround from '../images/background.svg';
+import backGround from '../images/background.png';
 
 export default function Categories() {
   const navigation = useNavigation();
@@ -18,42 +18,70 @@ export default function Categories() {
   }
 
   return (
-    <View style={styles.container}>
-      <RectButton style={styles.button} onPress={() => navigationDrinks('Ordinary_Drink')}>
-        <Text style={styles.titleButton}>Ordinary Drink</Text>
-      </RectButton>
-      <RectButton style={styles.button} onPress={() => navigationCocktail('Cocktail')}>
-        <Text style={styles.titleButton}>Cocktails</Text>
-      </RectButton>
-    </View>
+    <SafeAreaView style={styles.container}>
+
+      <View style={{ width: Dimensions.get('window').width }}>
+        <Text style={{ fontSize: 48, textAlign: 'left', fontWeight: 'bold' }}>Cocktails</Text>
+        <Text style={{ fontSize: 48, textAlign: 'center', fontWeight: 'bold' }}>and</Text>
+        <Text style={{ fontSize: 48, textAlign: 'right', fontWeight: 'bold' }}>Drinks</Text>
+      </View>
+
+      <View>
+        <Image source={backGround} style={styles.backGroundImage} />
+      </View>
+
+      <View style={{ flexDirection: 'row', alignContent: 'space-between' }}>
+        <RectButton style={styles.buttonDrinks} onPress={() => navigationCocktail('Cocktail')}>
+          <Text style={styles.titleButton}>Cocktails</Text>
+        </RectButton>
+        <RectButton style={styles.buttonCocktails} onPress={() => navigationDrinks('Ordinary_Drink')}>
+          <Text style={styles.titleButton}>Ordinary Drink</Text>
+        </RectButton>
+      </View>
+
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ededed',
-    margin: 10,
-    justifyContent: 'center',
+    backgroundColor: '#F8F7F5',
+    marginLeft: 10,
+    marginRight: 10,
     alignItems: 'center',
-    padding: 20,
+    justifyContent: 'center',
   },
 
-  button: {
-    marginBottom: 20,
-    width: 250,
-    height: 100,
+  buttonCocktails: {
+    width: 150,
+    height: 80,
     borderRadius: 20,
-    backgroundColor: '#15c3d6',
+    backgroundColor: '#FE9925',
     justifyContent: 'center',
     alignItems: 'center',
+    marginLeft: 10,
   },
+
+  buttonDrinks: {
+    width: 150,
+    height: 80,
+    borderRadius: 20,
+    backgroundColor: '#B31A0F',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 10,
+  },
+
   titleButton: {
     fontSize: 18,
+    fontStyle: 'italic',
     fontWeight: 'bold',
+    color: '#FFFF',
+    lineHeight: 33,
   },
   backGroundImage: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    height: 300,
   }
 });

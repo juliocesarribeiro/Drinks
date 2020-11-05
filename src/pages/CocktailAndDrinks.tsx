@@ -6,9 +6,10 @@ import {
   FlatList,
   SafeAreaView,
   ActivityIndicator,
+  Image
 } from 'react-native';
 
-import { Image } from 'react-native-elements';
+import Shimmer from 'react-native-shimmer';
 
 import {
   useNavigation,
@@ -56,16 +57,17 @@ export default function CocktailAndDrinks() {
         data={drinks}
         keyExtractor={(drink) => String(drink.idDrink)}
         renderItem={({ item }) => (
-          <RectButton key={item.idDrink} onPress={() => detailsDrinks(item.idDrink)}>
-            <View style={styles.teste}>
-              <Image
-                style={styles.Image}
-                source={{ uri: item.strDrinkThumb }}
-                PlaceholderContent={<ActivityIndicator size="small" color="#000" />}
-              />
-              <Text style={styles.Title}>{item.strDrink}</Text>
-            </View>
-          </RectButton>
+          <>
+            <RectButton key={item.idDrink} onPress={() => detailsDrinks(item.idDrink)}>
+              <View style={styles.teste}>
+                <Image
+                  style={styles.Image}
+                  source={{ uri: item.strDrinkThumb }}
+                />
+                <Text style={styles.Title}>{item.strDrink}</Text>
+              </View>
+            </RectButton>
+          </>
         )}
       />
     </SafeAreaView>
@@ -75,7 +77,11 @@ export default function CocktailAndDrinks() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 10,
+    backgroundColor: '#F8F7F5',
+    marginLeft: 10,
+    marginRight: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   teste: {
