@@ -5,11 +5,11 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { Image } from 'react-native-elements';
 
 import api from '../services/api';
+import { createIconSetFromFontello } from 'react-native-vector-icons';
 
 interface DetailsRouteParams {
   id: string;
 }
-
 interface DetailsProps {
   idDrink: string;
   strDrink: string;
@@ -61,6 +61,21 @@ export default function Details() {
     })()
   }, [params.id]);
 
+
+  function fodase() {
+    var position = 1;
+    var key = 'strIngredient';
+    while (position <= 15) {
+      let i = key + position
+
+      if (drink[i] != null) {
+        console.log(drink)
+        return drink[i];
+      }
+      position++
+    }
+  }
+
   if (!drink) {
     return (
       <View
@@ -75,13 +90,12 @@ export default function Details() {
       </View>
     );
   }
+  fodase();
 
   return (
     <View style={styles.Container}>
 
       {drink.map((item) => {
-        console.log(item.idDrink);
-
         return (
           <View key={item.idDrink} style={styles.Container}>
             <View style={styles.ContainerDrink}>
@@ -96,8 +110,8 @@ export default function Details() {
 
             <ScrollView>
               <Text style={styles.Title}>Ingredient:</Text>
-              <Text>{item.strIngredient1}</Text>
-              <Text>{item.strIngredient2}</Text>
+              <Text>{}</Text>
+              {/* <Text>{item.strIngredient2}</Text>
               <Text>{item.strIngredient3}</Text>
               <Text>{item.strIngredient4}</Text>
               <Text>{item.strIngredient5}</Text>
@@ -110,7 +124,7 @@ export default function Details() {
               <Text>{item.strIngredient12}</Text>
               <Text>{item.strIngredient13}</Text>
               <Text>{item.strIngredient14}</Text>
-              <Text>{item.strIngredient15}</Text>
+              <Text>{item.strIngredient15}</Text> */}
 
               <Text style={styles.Title}>strMeasure:</Text>
               <Text>{item.strMeasure1}</Text>
