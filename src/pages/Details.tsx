@@ -58,23 +58,24 @@ export default function Details() {
       const response = await api.get(`lookup.php?i=${params.id}`)
 
       setDrink(response.data.drinks);
+
     })()
   }, [params.id]);
 
 
-  const fodase = () => {
-    var position = 1;
-    var key = 'strIngredient';
-    while (position <= 15) {
-      let i = key + position
+  var position = 1;
+  var key = 'strIngredient';
 
-      if (drink[i] != null) {
-        console.log(drink)
-        return drink[i];
-      }
-      position++
+  while (position <= 15) {
+    let i = key + position;
+
+    if (drink[i] != null) {
+      console.log(drink[i]);
     }
+    position++
   }
+
+
 
   if (!drink) {
     return (
@@ -90,7 +91,6 @@ export default function Details() {
       </View>
     );
   }
-  fodase();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -107,42 +107,48 @@ export default function Details() {
             </View>
 
             <ScrollView>
-              <Text style={styles.Title}>Ingredient:</Text>
-              <Text>{item.strIngredient1}</Text>
-              <Text>{item.strIngredient2}</Text>
-              <Text>{item.strIngredient3}</Text>
-              <Text>{item.strIngredient4}</Text>
-              <Text>{item.strIngredient5}</Text>
-              <Text>{item.strIngredient6}</Text>
-              <Text>{item.strIngredient7}</Text>
-              <Text>{item.strIngredient8}</Text>
-              <Text>{item.strIngredient9}</Text>
-              <Text>{item.strIngredient10}</Text>
-              <Text>{item.strIngredient11}</Text>
-              <Text>{item.strIngredient12}</Text>
-              <Text>{item.strIngredient13}</Text>
-              <Text>{item.strIngredient14}</Text>
-              <Text>{item.strIngredient15}</Text>
+              <View>
+                <Text style={styles.Title}>Ingredient:</Text>
+                {/* <Text>{item.strIngredient1}</Text>
+                <Text>{item.strIngredient2}</Text>
+                <Text>{item.strIngredient3}</Text>
+                <Text>{item.strIngredient4}</Text>
+                <Text>{item.strIngredient5}</Text>
+                <Text>{item.strIngredient6}</Text>
+                <Text>{item.strIngredient7}</Text>
+                <Text>{item.strIngredient8}</Text>
+                <Text>{item.strIngredient9}</Text>
+                <Text>{item.strIngredient10}</Text>
+                <Text>{item.strIngredient11}</Text>
+                <Text>{item.strIngredient12}</Text>
+                <Text>{item.strIngredient13}</Text>
+                <Text>{item.strIngredient14}</Text>
+                <Text>{item.strIngredient15}</Text> */}
+              </View>
 
-              <Text style={styles.Title}>strMeasure:</Text>
-              <Text>{item.strMeasure1}</Text>
-              <Text>{item.strMeasure2}</Text>
-              <Text>{item.strMeasure3}</Text>
-              <Text>{item.strMeasure4}</Text>
-              <Text>{item.strMeasure5}</Text>
-              <Text>{item.strMeasure6}</Text>
-              <Text>{item.strMeasure7}</Text>
-              <Text>{item.strMeasure8}</Text>
-              <Text>{item.strMeasure9}</Text>
-              <Text>{item.strMeasure10}</Text>
-              <Text>{item.strMeasure11}</Text>
-              <Text>{item.strMeasure12}</Text>
-              <Text>{item.strMeasure13}</Text>
-              <Text>{item.strMeasure14}</Text>
-              <Text>{item.strMeasure15}</Text>
+              <View>
+                <Text style={styles.Title}>strMeasure:</Text>
+                <Text>{item.strMeasure1}</Text>
+                <Text>{item.strMeasure2}</Text>
+                <Text>{item.strMeasure3}</Text>
+                <Text>{item.strMeasure4}</Text>
+                <Text>{item.strMeasure5}</Text>
+                <Text>{item.strMeasure6}</Text>
+                <Text>{item.strMeasure7}</Text>
+                <Text>{item.strMeasure8}</Text>
+                <Text>{item.strMeasure9}</Text>
+                <Text>{item.strMeasure10}</Text>
+                <Text>{item.strMeasure11}</Text>
+                <Text>{item.strMeasure12}</Text>
+                <Text>{item.strMeasure13}</Text>
+                <Text>{item.strMeasure14}</Text>
+                <Text>{item.strMeasure15}</Text>
+              </View>
 
-              <Text style={styles.Title}>Instructions:</Text>
-              <Text>{item.strInstructions}</Text>
+              <View>
+                <Text style={styles.Title}>Instructions:</Text>
+                <Text>{item.strInstructions}</Text>
+              </View>
             </ScrollView>
           </View>
         );
