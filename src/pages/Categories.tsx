@@ -18,39 +18,52 @@ export default function Categories() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.containerSafe}>
+      <View style={styles.container}>
+        <View style={{ width: Dimensions.get('window').width }}>
+          <Text style={{ fontFamily: 'CabinSketch-Bold', fontSize: 48, textAlign: 'left' }}>Cocktails</Text>
+          <Text style={{ fontFamily: 'CabinSketch-Bold', fontSize: 36, textAlign: 'center' }}>and</Text>
+          <Text style={{ fontFamily: 'CabinSketch-Bold', fontSize: 48, textAlign: 'right' }}>Drinks</Text>
+        </View>
 
-      <View style={{ width: Dimensions.get('window').width }}>
-        <Text style={{ fontSize: 48, textAlign: 'left', fontWeight: 'bold' }}>Cocktails</Text>
-        <Text style={{ fontSize: 48, textAlign: 'center', fontWeight: 'bold' }}>and</Text>
-        <Text style={{ fontSize: 48, textAlign: 'right', fontWeight: 'bold' }}>Drinks</Text>
+        <View style={styles.containerImg}>
+          <Image source={backGround} style={styles.backgroundImg} />
+        </View>
+
+        <View style={styles.containerButton}>
+          <RectButton style={styles.buttonDrinks} onPress={() => navigationCocktail('Cocktail')}>
+            <Text style={styles.titleButton}>Cocktails</Text>
+          </RectButton>
+          <RectButton style={styles.buttonCocktails} onPress={() => navigationDrinks('Ordinary_Drink')}>
+            <Text style={styles.titleButton}>Ordinary Drink</Text>
+          </RectButton>
+        </View>
       </View>
-
-      <View>
-        <Image source={backGround} style={styles.backGroundImage} />
-      </View>
-
-      <View style={{ flexDirection: 'row', alignContent: 'space-between' }}>
-        <RectButton style={styles.buttonDrinks} onPress={() => navigationCocktail('Cocktail')}>
-          <Text style={styles.titleButton}>Cocktails</Text>
-        </RectButton>
-        <RectButton style={styles.buttonCocktails} onPress={() => navigationDrinks('Ordinary_Drink')}>
-          <Text style={styles.titleButton}>Ordinary Drink</Text>
-        </RectButton>
-      </View>
-
     </SafeAreaView>
   );
 }
 
+
 const styles = StyleSheet.create({
-  container: {
+  containerSafe: {
     flex: 1,
     backgroundColor: '#F8F7F5',
+  },
+
+  container: {
     marginLeft: 10,
     marginRight: 10,
+    marginBottom: 10,
+    marginTop: 10,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  containerButton: {
+    marginTop: 20,
+    flexDirection: 'row',
+    alignContent: 'space-between'
+
   },
 
   buttonCocktails: {
@@ -80,8 +93,14 @@ const styles = StyleSheet.create({
     color: '#FFFF',
     lineHeight: 33,
   },
-  backGroundImage: {
-    width: Dimensions.get('window').width,
-    height: 300,
+
+  containerImg: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
+
+  backgroundImg: {
+    width: 370,
+    height: 250,
   }
 });

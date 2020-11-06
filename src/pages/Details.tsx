@@ -63,20 +63,6 @@ export default function Details() {
   }, [params.id]);
 
 
-  var position = 1;
-  var key = 'strIngredient';
-
-  while (position <= 15) {
-    let i = key + position;
-
-    if (drink[i] != null) {
-      console.log(drink[i]);
-    }
-    position++
-  }
-
-
-
   if (!drink) {
     return (
       <View
@@ -109,7 +95,7 @@ export default function Details() {
             <ScrollView>
               <View>
                 <Text style={styles.Title}>Ingredient:</Text>
-                {/* <Text>{item.strIngredient1}</Text>
+                <Text>{item.strIngredient1}</Text>
                 <Text>{item.strIngredient2}</Text>
                 <Text>{item.strIngredient3}</Text>
                 <Text>{item.strIngredient4}</Text>
@@ -123,7 +109,7 @@ export default function Details() {
                 <Text>{item.strIngredient12}</Text>
                 <Text>{item.strIngredient13}</Text>
                 <Text>{item.strIngredient14}</Text>
-                <Text>{item.strIngredient15}</Text> */}
+                <Text>{item.strIngredient15}</Text>
               </View>
 
               <View>
@@ -163,6 +149,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8F7F5',
     marginLeft: 10,
     marginRight: 10,
+    marginBottom: 10,
+    marginTop: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
