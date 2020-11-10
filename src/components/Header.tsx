@@ -36,7 +36,7 @@ export default function Header({ title, showCancel = true }: HeaderProps) {
 const styles = StyleSheet.create({
   container: {
     padding: 24,
-    backgroundColor: '#f9fafc',
+    backgroundColor: '#F8F7F5',
     borderColor: '#dde3f0',
     paddingTop: 44,
 
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#000',
-    fontSize: 18,
+    fontSize: 24,
+    fontFamily: 'CabinSketch-Regular',
   }
 })

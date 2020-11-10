@@ -5,11 +5,8 @@ import {
   StyleSheet,
   FlatList,
   SafeAreaView,
-  ActivityIndicator,
   Image
 } from 'react-native';
-
-import Shimmer from 'react-native-shimmer';
 
 import {
   useNavigation,

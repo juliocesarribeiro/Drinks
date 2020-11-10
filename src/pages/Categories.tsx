@@ -62,8 +62,7 @@ const styles = StyleSheet.create({
   containerButton: {
     marginTop: 20,
     flexDirection: 'row',
-    alignContent: 'space-between'
-
+    alignContent: 'space-between',
   },
 
   buttonCocktails: {
@@ -87,9 +86,8 @@ const styles = StyleSheet.create({
   },
 
   titleButton: {
-    fontSize: 18,
-    fontStyle: 'italic',
-    fontWeight: 'bold',
+    fontSize: 20,
+    fontFamily: 'CabinSketch-Regular',
     color: '#FFFF',
     lineHeight: 33,
   },
